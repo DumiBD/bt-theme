@@ -1,0 +1,24 @@
+<section {{ banner.cssClasses() | raw }} {{ banner.inlineStyles() | raw }}>
+    {% if banner.show %}
+        <div class="site-banner__inner">
+            {{ banner.menuHTML() | raw }}
+
+            <div class="site-banner__content">
+                {{ banner.subtitleHTML() | raw }}
+
+                <div class="site-banner__title">
+                    {{ banner.iconHTML() | raw }}
+                    {{ banner.titleHTML() | raw }}
+                </div>
+
+                {{ banner.descriptionHTML() | raw }}
+                {{ banner.buttonHTML() | raw }}
+                {{ banner.formHTML() | raw }}
+            </div>
+
+            {{ banner.imageHTML() | raw }}
+
+            {{ banner.extraHTML() | raw }}
+        </div>
+    {% endif %}
+</section>

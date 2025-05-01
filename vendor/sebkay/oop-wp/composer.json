@@ -1,0 +1,26 @@
+{
+    "name": "sebkay/oop-wp",
+    "authors": [
+        {
+            "name": "Seb Kay",
+            "email": "seb@sebkay.com",
+            "homepage": "https://sebkay.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "OOPWP\\": "src/"
+        }
+    },
+    "license": "MIT",
+    "require-dev": {
+        "squizlabs/php_codesniffer": "^3.5",
+        "spatie/ray": "^1.28"
+    },
+    "require": {
+        "nesbot/carbon": "^2.50"
+    },
+    "scripts": {
+        "lint": "./vendor/bin/phpcs --standard=PSR12 ./src"
+    }
+}

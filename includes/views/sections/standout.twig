@@ -1,0 +1,75 @@
+{% extends "layouts/section.twig" %}
+
+{% block content %}
+    <div data-animate="fade">
+        {% include "components/intro.twig" with {
+            intro: intro,
+        } %}
+
+        {% set image = cms_image(img ?: [], 'Logo') %}
+        {% set button = cms_button(btn) %}
+
+        <div class="section section--large">
+            <div class="grid grid--spaced grid--spaced-tb2-1" data-animate="fade">
+                <div class="grid__col grid__col--5">
+                    {% if enhanced and enhanced_txt %}
+                        <div class="mb-tiny">
+                            <span class="badge">
+                                {{ enhanced_txt | raw }}
+                            </span>
+                        </div>
+                    {% endif %}
+
+                    {% if image or title or txt %}
+                        <div class="txt-styles">
+                            {% if image or title %}
+                                <div class="icon-title">
+                                    {% if image %}
+                                        {{ image | raw }}
+                                    {% endif %}
+
+                                    {% if title %}
+                                        <h3 class="h2">
+                                            {{ title }}
+                                        </h3>
+                                    {% endif %}
+                                </div>
+                            {% endif %}
+
+                            {{ txt | wysiwyg }}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <div class="grid__col grid__col--1"></div>
+
+                <div class="grid__col grid__col--6">
+                    {% include "components/accordion.twig" with {
+                    accordion: accordion,
+                    numbered: true,
+                } %}
+
+                    {% if button or link.is_enabled %}
+                        <div class="btn-group mt-small">
+                            {% if button %}
+                                {{ button | raw }}
+                            {% endif %}
+
+                            {% if link.is_enabled %}
+                                <a class="fancy-link" href="{{ link.url | e }}" target="_blank">
+                                    <span class="fancy-icon">
+                                        {{ svg('arrow-right', 'icons') }}
+                                    </span>
+
+                                    <span class="fancy-link__txt">
+                                        {{ link.txt }}
+                                    </span>
+                                </a>
+                            {% endif %}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

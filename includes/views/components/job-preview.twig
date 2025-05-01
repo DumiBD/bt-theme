@@ -1,0 +1,61 @@
+<article class="job-preview">
+    <div class="job-preview__top">
+        {% if job.typeLinks() %}
+            <p class="job-preview__term">
+                {{ job.typeLinks() | join(', ') | raw }}
+            </p>
+        {% endif %}
+
+        <div class="job-preview__actions">
+            {% if job.isNew %}
+                <span class="badge">
+                    {{ __('New', 'bluetown') }}
+                </span>
+            {% else %}
+                <p class="job-preview__date">
+                    {{ job.daysSinceCreatedFormatted }}
+                </p>
+            {% endif %}
+
+            <a class="job-preview__save {{ job.isSaved ? 'active' : '' | e }}" href="#" data-save-job="{{ job.id() | e }}">
+                {{ svg('heart', 'icons') }}
+            </a>
+        </div>
+    </div>
+
+    <div class="job-preview__main">
+        <h3 class="job-preview__title">
+            <a href="{{ job.url() | e }}">
+                {{ job.title() | raw }}
+            </a>
+        </h3>
+
+        <ul class="job-preview__meta">
+            {% if job.locationLinks() %}
+                <li class="job-preview__meta-item">
+                    {{ job.locationLinks() | join(', ') | raw }}
+                </li>
+            {% endif %}
+
+            {% if job.typeLinks() %}
+                <li class="job-preview__meta-item">
+                    {{ job.typeLinks() | join(', ') | raw }}
+                </li>
+            {% endif %}
+
+            {% if job.salary %}
+                <li class="job-preview__meta-item">
+                    {{ job.salary }}
+                </li>
+            {% endif %}
+        </ul>
+
+        <div class="job-preview__apply">
+            <a class="btn" href="{{ job.url() | e }}">
+                <span>
+                    {{ __('Info', 'bluetown') }}
+                </span>
+            </a>
+        </div>
+    </div>
+</article>

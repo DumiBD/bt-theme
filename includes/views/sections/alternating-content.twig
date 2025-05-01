@@ -1,0 +1,38 @@
+{% extends "layouts/section.twig" %}
+
+{% block content %}
+    <div data-animate="fade">
+        {% include "components/intro.twig" with {
+            intro: intro,
+        } %}
+
+        {% if image or txt or accordion %}{% endif %}
+        <div class="section section--large">
+            <div class="grid grid--v-center grid--spaced-tb2-1 {{ orientation == 'option_2' ? 'grid--spaced-reverse' : '' }}">
+                <div class="grid__col grid__col--6 grid__col--align-top">
+                    {% if image %}
+                        {{ cms_image(image, 'Alternating Content') }}
+                    {% endif %}
+                </div>
+
+                <div class="grid__col grid__col--1"></div>
+
+                <div class="grid__col grid__col--5">
+                    {% if txt %}
+                        <div class="txt-styles">
+                            {{ txt | wysiwyg }}
+                        </div>
+                    {% endif %}
+
+                    {% if accordion %}
+                        <div class="mt-tiny">
+                            {% include "components/accordion.twig" with {
+                            accordion: accordion,
+                        } %}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

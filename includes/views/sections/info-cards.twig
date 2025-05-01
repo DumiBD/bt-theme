@@ -1,0 +1,79 @@
+{% extends "layouts/section.twig" %}
+
+{% block content %}
+    <div class="section section--medium mb-small">
+        <div class="moveable-shape" data-scaler>
+            {{ svg('moveable', 'shapes') }}
+        </div>
+    </div>
+
+    <div data-animate="fade">
+        {% include "components/intro.twig" with {
+            intro: intro,
+        } %}
+
+        <div class="section section--large">
+            <div class="grid grid--spaced grid--spaced-6 grid--spaced-tb2-1">
+                {% for card in info_cards %}
+                    {% set image = cms_image(card.img ?: [], 'Logo') %}
+
+                    <div class="grid__col grid__col--6" data-animate="fade">
+                        <div class="info-card {{ card.enhanced ? 'info-card--highlight' : '' }} {{ card.enhanced and card.enhanced_txt ? 'info-card--has-note' : '' }}">
+                            {% if card.enhanced and card.enhanced_txt %}
+                                <p class="info-card__note">
+                                    {{ card.enhanced_txt }}
+                                </p>
+                            {% endif %}
+
+                            <div class="info-card__inner">
+                                {% if card.title %}
+                                    <div class="info-card__top">
+                                        {% if image %}
+                                            <div class="info-card__img">
+                                                {{ image | raw }}
+                                            </div>
+                                        {% endif %}
+
+                                        {% if card.title %}
+                                            <h3 class="info-card__title">
+                                                {{ card.title }}
+                                            </h3>
+                                        {% endif %}
+                                    </div>
+                                {% endif %}
+
+                                {% if card.txt %}
+                                    <div class="info-card__txt txt-styles">
+                                        {{ card.txt | wysiwyg }}
+                                    </div>
+                                {% endif %}
+
+                                {% if (card.link.is_enabled and card.link.url and card.link.txt) or (card.btn.is_enabled and card.btn.url and card.btn.txt) %}
+                                    <div class="info-card__links">
+                                        {% if card.link.is_enabled and card.link.url and card.link.txt %}
+                                            <a class="fancy-link" href="{{ card.link.url | e }}">
+                                                <span class="fancy-icon">
+                                                    {{ svg('arrow-right', 'icons') }}
+                                                </span>
+
+                                                <span class="fancy-link__txt">
+                                                    {{ card.link.txt }}
+                                                </span>
+                                            </a>
+                                        {% endif %}
+
+                                        {% if card.btn.is_enabled and card.btn.url and card.btn.txt %}
+                                            <a class="btn {{ card.enhanced ? 'btn--light' : '' }}" href="{{ card.btn.url | e }}">
+                                                {{ card.btn.txt }}
+                                            </a>
+                                        {% endif %}
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

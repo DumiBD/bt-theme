@@ -1,0 +1,27 @@
+A new job application has been submitted for the job:
+<a href='{{ job.url() }}'>{{ job.title() | raw }}</a>.
+
+<ul>
+    <li>
+        <strong>
+            Job title
+        </strong>:
+        {{ job.title() | raw }}
+    </li>
+    {% for data in job_application.emailData() %}
+        <li>
+            <strong>
+                {{ data.label }}
+            </strong>:
+            {{ data.value | raw }}
+        </li>
+    {% endfor %}
+</ul>
+
+<hr>
+
+<h4>
+    Cover Message
+</h4>
+
+{{ job_application.cover_message | wysiwyg }}

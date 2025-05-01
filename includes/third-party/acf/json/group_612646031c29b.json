@@ -1,0 +1,72 @@
+{
+    "key": "group_612646031c29b",
+    "title": "Call To Action",
+    "fields": [
+        {
+            "key": "field_61264627ae57e",
+            "label": "Override Global",
+            "name": "cta_override",
+            "type": "true_false",
+            "instructions": "This will override the global <em>Call To Action<\/em> which is defined in the <a href=\"\/wp-admin\/admin.php?page=theme-settings\" target=\"_blank\">Theme Settings<\/a>.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 1,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        },
+        {
+            "key": "field_61264629ae57f",
+            "label": "Call To Action (Clone)",
+            "name": "cta",
+            "type": "clone",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_61264627ae57e",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "acf-group-seamless",
+                "id": ""
+            },
+            "clone": [
+                "group_61263da1a5b11"
+            ],
+            "display": "group",
+            "layout": "block",
+            "prefix_label": 0,
+            "prefix_name": 1
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "default"
+            }
+        ]
+    ],
+    "menu_order": 20,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "modified": 1629901806
+}

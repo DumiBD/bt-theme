@@ -1,0 +1,22 @@
+{% extends "layouts/section.twig" %}
+
+{% block content %}
+    {% include "components/intro.twig" with {
+        intro: intro,
+    } %}
+
+    {% if stats %}
+        <div class="section section--large">
+            <div class="grid grid--spaced grid--spaced-3 grid--spaced-m2-2">
+                {% for stat in stats %}
+                    <div class="grid__col grid__col--3">
+                        {% include "elements/stat.twig" with {
+                            value: stat.value,
+                            label: stat.label,
+                        } %}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends "layouts/section.twig" %}
+
+{% block content %}
+    <div class="overflow-hidden" data-animate="fade">
+        {% include "components/intro.twig" with {
+            intro: intro,
+        } %}
+
+        {% if slides %}
+            <div class="section section--large">
+                <div class="flickity flickity--cards" data-slider data-settings='{"cellAlign": "left", "counter" : false, "contain": true}'>
+                    {% for slide in slides %}
+                        <div class="flickity__item" data-animate="fade">
+                            {% include "components/card.twig" with {
+                                image: cms_image(slide.icon, 'Card Icon'),
+                                txt: slide.txt,
+                                link: Link(slide.link, {'classes': ['txt-uppercase txt-tiny txt-link txt-link--alt']}),
+                            } %}
+                        </div>
+                    {% endfor %}
+                </div>
+
+                {% if btn %}
+                    <div class="mt-small txt-center">
+                        {{ cms_button(btn) }}
+                    </div>
+                {% endif %}
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

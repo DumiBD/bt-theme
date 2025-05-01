@@ -1,0 +1,34 @@
+{% if content %}
+    {% set css_class = 'icon-content__icon--primary' %}
+    {% set icon_html = svg(icon, 'icons') %}
+
+    {% if style == 'secondary' %}
+        {% set css_class = 'icon-content__icon--secondary' %}
+    {% endif %}
+
+    {% if icon %}
+        {% set css_class = css_class ~ ' icon-content__icon--' ~ icon %}
+    {% endif %}
+
+    {% if text %}
+        {% set icon_html = '<span>' ~ text ~ '</span>' %}
+        {% set css_class = 'icon-content__icon--txt' %}
+    {% endif %}
+
+    {% if url %}
+        <a class='icon-content' href="{{ url | e }}">
+        {% else %}
+            <div class='icon-content'>
+            {% endif %}
+            <span class='icon-content__icon {{ css_class | e }}'>
+                {{ icon_html | raw }}
+            </span>
+            <p class='icon-content__txt'>
+                {{ content }}
+            </p>
+            {% if url %}
+            </a>
+    {% else %}
+        </div>
+    {% endif %}
+{% endif %}

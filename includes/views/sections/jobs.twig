@@ -1,0 +1,26 @@
+{% extends "layouts/section.twig" %}
+
+{% block content %}
+    {% include "components/intro.twig" with {
+        intro: intro,
+    } %}
+
+    <div class="section section--large">
+        <div class="job-grid">
+            {% for job_id in jobs %}
+                {% set
+                    Job = Job(job_id)
+                        .withIndustries()
+                        .withLocations()
+                        .withTypes()
+                        .withSalary()
+                %}
+                <div class="job-grid__item">
+                    {% include "components/job-preview.twig" with {
+                        job: Job,
+                    } %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

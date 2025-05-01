@@ -1,0 +1,23 @@
+{% if post_id %}
+    {% set Testimonial = Testimonial(post_id).withAll() %}
+
+    <div class="quote quote--center">
+        {% if Testimonial.logoHtml %}
+            <div class="quote__media">
+                {{ Testimonial.logoHtml | raw }}
+            </div>
+        {% endif %}
+
+        {% if Testimonial.quote %}
+            <p>{{ split_string_into_spans(Testimonial.quote) }}</p>
+        {% endif %}
+
+        {% if Testimonial.quoteAttribution %}
+            <footer>
+                <cite>
+                    {{ Testimonial.quoteAttribution }}
+                </cite>
+            </footer>
+        {% endif %}
+    </div>
+{% endif %}

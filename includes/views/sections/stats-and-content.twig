@@ -1,0 +1,34 @@
+{% extends "layouts/section.twig" %}
+
+{% block content %}
+    <div data-animate="fade">
+        {% include "components/intro.twig" with {
+            intro: intro,
+        } %}
+
+        {% if stats or txt %}
+            <div class="section section--large">
+                <div class="grid grid--spaced grid--spaced-tb2-1">
+                    <div class="grid__col grid__col--6" data-animate="stats">
+                        {% if stats %}
+                            <div class="grid grid--spaced grid--spaced-6">
+                                {% for stat in stats %}
+                                    <div class="grid__col grid__col--6 tb2-txt-center">
+                                        {% include "elements/stat.twig" with {
+                                            value: stat.value,
+                                            label: stat.label,
+                                        } %}
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="grid__col grid__col--6">
+                        {{ txt | wysiwyg }}
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

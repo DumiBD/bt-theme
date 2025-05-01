@@ -1,0 +1,15 @@
+{% extends "layouts/section.twig" %}
+
+{% block content %}
+    {% include "components/intro.twig" with {
+        intro: intro,
+    } %}
+
+    {% if txt %}
+        <div class="section section--medium">
+            <div class="txt-styles">
+                {{ txt | wysiwyg }}
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

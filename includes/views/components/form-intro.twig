@@ -1,0 +1,15 @@
+<div class="mb-tiny">
+    {% if title %}
+        <h2 class="h3">
+            {{ title }}
+        </h2>
+    {% endif %}
+
+    {% if description %}
+        <div class="txt-styles mt-mini">
+            <p class="txt-small">
+                {{ description | raw }}
+            </p>
+        </div>
+    {% endif %}
+</div>

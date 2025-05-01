@@ -1,0 +1,14 @@
+{% if value or label %}
+    <div class="stat">
+        {% if value %}
+            <p class="stat__title">
+                {{ value | raw }}
+            </p>
+        {% endif %}
+        {% if label %}
+            <p class="stat__txt">
+                {{ label | raw }}
+            </p>
+        {% endif %}
+    </div>
+{% endif %}

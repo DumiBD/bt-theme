@@ -1,0 +1,33 @@
+{% extends "layouts/section.twig" %}
+
+{% block content %}
+    {% include "components/intro.twig" with {
+        intro: intro,
+    } %}
+
+    {% if links %}
+        <div class="section section--large">
+            <div class="icon-cards">
+                {% for link in links %}
+                    <a class="icon-cards__item" href="#section-{{ link.id }}">
+                        {% if link.img %}
+                            {{ cms_image(link.img, 'Jump Link Icon') }}
+                        {% endif %}
+
+                        {% if link.title %}
+                            <h3 class="icon-cards__item-title">
+                                {{ link.title }}
+                            </h3>
+                        {% endif %}
+
+                        {% if link.txt %}
+                            <p class="icon-cards__item-txt">
+                                {{ link.txt }}
+                            </p>
+                        {% endif %}
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

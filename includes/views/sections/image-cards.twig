@@ -1,0 +1,63 @@
+{% extends "layouts/section.twig" %}
+
+{% block content %}
+    <div data-animate="fade">
+        {% include "components/intro.twig" with {
+        intro: intro,
+    } %}
+
+        <div class="section section--large">
+            <div class="cards">
+                {% for card in cards %}
+                    <div class="cards__item" data-animate="fade">
+                        <div class="image-card">
+                            {% if card.img %}
+                                <div class="image-card__media">
+                                    {{ cms_image(card.img, 'Card Image') }}
+                                </div>
+                            {% endif %}
+
+                            <div class="image-card__content">
+                                {% if card.icon %}
+                                    <div class="image-card__icon">
+                                        {{ cms_image(card.icon, 'Card Icon') }}
+                                    </div>
+                                {% endif %}
+
+                                {% if card.subtitle %}
+                                    <p class="image-card__subtitle">
+                                        {{ card.subtitle }}
+                                    </p>
+                                {% endif %}
+
+                                {% if card.title %}
+                                    <h3 class="image-card__title">
+                                        {{ card.title }}
+                                    </h3>
+                                {% endif %}
+
+                                {% if card.txt %}
+                                    <div class="txt-styles image-card__txt">
+                                        {{ card.txt | wysiwyg }}
+                                    </div>
+                                {% endif %}
+
+                                {% if card.btn.url and card.btn.txt %}
+                                    <a class="fancy-link" href="{{ card.btn.url | e }}">
+                                        <span class="fancy-icon">
+                                            {{ svg('arrow-right', 'icons') }}
+                                        </span>
+
+                                        <span class="fancy-link__txt">
+                                            {{ card.btn.txt }}
+                                        </span>
+                                    </a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

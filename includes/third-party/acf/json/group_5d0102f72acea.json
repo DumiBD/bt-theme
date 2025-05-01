@@ -1,0 +1,80 @@
+{
+    "key": "group_5d0102f72acea",
+    "title": "[BLOCK] Icon Content",
+    "fields": [
+        {
+            "key": "field_5d0106a8581fa",
+            "label": "Icon",
+            "name": "icon",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "check": "Check",
+                "cross": "Cross",
+                "caret-up": "Caret (Up)",
+                "caret-right": "Caret (Right)",
+                "caret-down": "Caret (Down)",
+                "caret-left": "Caret (Left)",
+                "facebook": "Facebook",
+                "instagram": "Instagram",
+                "linkedin": "LinkedIn",
+                "pinterest": "Pinterest",
+                "twitter": "Twitter",
+                "youtube": "YouTube"
+            },
+            "default_value": [
+                "check"
+            ],
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 0,
+            "return_format": "value",
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_5d0103053a58d",
+            "label": "Text",
+            "name": "txt",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf\/icon-content"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "",
+    "modified": 1560348864
+}

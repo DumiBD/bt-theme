@@ -1,0 +1,63 @@
+{% extends "layouts/section.twig" %}
+
+{% block content %}
+    <div data-animate="fade">
+        {% include "components/intro.twig" with {
+            intro: intro,
+        } %}
+
+        <div class="section section--large">
+            <div class="grid grid--spaced grid--spaced-tb1-1">
+                <div class="grid__col grid__col--6" data-animate="words">
+                    {% if testimonials %}
+                        <div class="flickity flickity--testimonials" data-slider data-settings='{"fade": true, "pageDots": false, "progressBar": false}'>
+                            {% for post_id in testimonials %}
+                                <div class="flickity__item">
+                                    {% include "components/testimonial.twig" with {
+                                        post_id: post_id,
+                                    } %}
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <div class="grid__col grid__col--6">
+                    {% if review_cards %}
+                        <div class="grid grid--spaced grid--spaced-6 grid--spaced-m2-1">
+                            {% for card in review_cards %}
+                                <div class="grid__col grid__col--6 grid__col--flex" data-animate="fade">
+                                    <div class="review-card">
+                                        {% if card.logo %}
+                                            <div class="review-card__media">
+                                                {{ cms_image(card.logo, 'Logo') }}
+                                            </div>
+                                        {% endif %}
+
+                                        {% include "elements/rating.twig" with {
+                                            rating: card.rating,
+                                        } %}
+
+                                        {% if card.rating %}
+                                            <p class="review-card__rating">
+                                                {{ card.rating }}
+                                            </p>
+                                        {% endif %}
+
+                                        {% if card.txt %}
+                                            <p class="review-card__txt">
+                                                {{ card.txt }}
+                                            </p>
+                                        {% endif %}
+
+                                        {{ cms_button(card.btn) }}
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

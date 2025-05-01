@@ -1,0 +1,42 @@
+{% extends "layouts/section.twig" %}
+
+{% block content %}
+    <div data-animate="fade">
+        {% include "components/intro.twig" with {
+            intro: intro,
+        } %}
+
+        {% if txt or images %}
+            {% set auto_play = "false" %}
+
+            {% if auto_cycle_carousel %}
+                {% set auto_play = "true" %}
+            {% endif %}
+            <div class="section section--large">
+                <div class="grid grid--spaced grid--v-center grid--spaced-tb2-1 {{ orientation == 'option_2' ? 'grid--spaced-reverse' : '' }}">
+                    <div class="grid__col grid__col--5">
+                        {% if txt %}
+                            <div class="txt-styles">
+                                {{ txt | wysiwyg }}
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="grid__col grid__col--1"></div>
+
+                    <div class="grid__col grid__col--6 grid__col--align-top" data-animate="fade">
+                        {% if images %}
+                            <div class="flickity flickity--carousel" data-slider data-settings='{"wrapAround": true, "progressBar": false, "pageDots": false, "counter": false, "autoPlay": {{ auto_play }}}'>
+                                {% for image in images %}
+                                    <div class="flickity__item">
+                                        {{ cms_image(image, 'Alternating Content') }}
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

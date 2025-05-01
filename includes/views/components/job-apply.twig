@@ -1,0 +1,74 @@
+<div class="job-apply">
+    {% if job.isExpired %}
+        <span class="badge badge--danger">
+            {{ __('Expired', 'bluetown') }}
+        </span>
+    {% elseif job.isNew %}
+        <span class="badge">
+            {{ __('New', 'bluetown') }}
+        </span>
+    {% endif %}
+
+    <ul class="job-apply__meta">
+        {% if job.locationLinks() %}
+            <li class="job-apply__meta-item">
+                {{ job.locationLinks() | join(', ') | raw }}
+            </li>
+        {% endif %}
+
+        {% if job.typeLinks() %}
+            <li class="job-apply__meta-item">
+                {{ job.typeLinks() | join(', ') | raw }}
+            </li>
+        {% endif %}
+
+        {% if job.salary %}
+            <li class="job-apply__meta-item">
+                {{ job.salary }}
+            </li>
+        {% endif %}
+
+        {% if not job.isNew %}
+            <li class="job-apply__meta-item">
+                {{ job.daysSinceCreatedFormatted }}
+            </li>
+        {% endif %}
+    </ul>
+
+    <div class="job-apply__actions">
+        {% if not job.isExpired %}
+            <a class="btn btn--full btn--secondary" href="{{ job.applyUrl ?: '#apply-form-' ~ job.id() }}" {{ job.applyUrl ? 'target="_blank"' : '' }}>
+                <span>
+                    {{ __('Apply now', 'bluetown') }}
+                </span>
+            </a>
+        {% else %}
+            <span class="btn btn--full btn--disabled">
+                <span>
+                    {{ __('This job has expired', 'bluetown') }}
+                </span>
+            </span>
+        {% endif %}
+
+        {% if not job.isExpired %}
+            <a class="save-link save-link--light {{ job.isSaved ? 'active' : '' | e }}" href="#" data-save-job="{{ job.id() | e }}">
+                <span class="save-link__icon">
+                    {{ svg('heart', 'icons') }}
+                </span>
+                <span class="save-link__txt">
+                    {% if job.isSaved %}
+                        {{ __('Remove from saved', 'bluetown') }}
+                    {% else %}
+                        {{ __('Save for later', 'bluetown') }}
+                    {% endif %}
+                </span>
+            </a>
+        {% else %}
+            <a class="save-link save-link--light" href="{{ all_jobs_url | e }}">
+                <span class="save-link__txt">
+                    {{ __('View all jobs', 'bluetown') }}
+                </span>
+            </a>
+        {% endif %}
+    </div>
+</div>

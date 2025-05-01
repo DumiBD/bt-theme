@@ -1,0 +1,38 @@
+{% set page_count = query ? query.max_num_pages : null %}
+{% set current_page_num = query ? query.query.paged : 1 %}
+
+{% if query and (prev_url or next_url) %}
+    <nav class="pagination">
+        <div class="pagination__inner">
+            <div class="pagination__prev {{ not prev_url ? 'disabled' : null }}">
+                <a href="{{ prev_url | raw }}">
+                    <span>
+                        {{ __('Previous', 'bluetown') }}
+                    </span>
+                </a>
+            </div>
+
+            <div class="pagination__pages">
+                <div class='pagination__pages-select'>
+                    {{ __('Page', 'bluetown') }}
+                    <select data-select-go-to='page'>
+                        {% for page_num in 1..page_count %}
+                            {% set selected = page_num == current_page_num ? 'selected' : null %}
+                            <option value="{{ get_pagenum_link(page_num) | raw }}" {{ selected | e }}>{{ page_num }}</option>
+                        {% endfor %}
+                    </select>
+                    {{ __('of', 'bluetown') }}
+                    {{ page_count }}
+                </div>
+            </div>
+
+            <div class="pagination__next {{ not next_url ? 'disabled' : null }}">
+                <a href="{{ next_url | raw }}">
+                    <span>
+                        {{ __('Next', 'bluetown') }}
+                    </span>
+                </a>
+            </div>
+        </div>
+    </nav>
+{% endif %}

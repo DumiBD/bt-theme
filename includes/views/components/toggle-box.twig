@@ -1,0 +1,17 @@
+{% if content %}
+    {% set box_id = 'toggle-box-' ~ random() %}
+
+    <div class='toggle-box'>
+        <a class='toggle-box__action' href='#' data-toggle-target='{{ box_id | e }}'>
+            <span class='toggle-box__action-icon'>
+                {{ svg('caret-down', 'icons') }}
+            </span>
+            <p class='toggle-box__action-txt'>
+                {{ __('Read More', 'bluetown') }}
+            </p>
+        </a>
+        <div class='toggle-box__content' data-toggle='{{ box_id | e }}'>
+            {{ content | wysiwyg }}
+        </div>
+    </div>
+{% endif %}

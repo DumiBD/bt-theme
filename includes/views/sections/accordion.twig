@@ -1,0 +1,15 @@
+{% extends "layouts/section.twig" %}
+
+{% block content %}
+    {% include "components/intro.twig" with {
+        intro: intro,
+    } %}
+
+    {% if accordion %}
+        <div class="section section--medium">
+            {% include "components/accordion.twig" with {
+                accordion: accordion,
+            } %}
+        </div>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,116 @@
+{% extends "layouts/section.twig" %}
+
+{% block content %}
+    {% include "components/intro.twig" with {
+        intro: intro,
+    } %}
+
+    {% if plans %}
+        <div class="section section--large">
+            <div class="mb-small txt-center">
+                <div class="toggle-switch">
+                    <label for="{{ html_id }}-toggle-annual-price" class="toggle-switch__label js-toggle-annual-price">
+                        <span class="toggle-switch__txt toggle-switch__txt--left">
+                            Pay monthly
+                        </span>
+
+                        <div class="toggle-switch__inner">
+                            <input id="{{ html_id }}-toggle-annual-price" class="jcf-ignore" type="checkbox" value="1">
+                            <span class="toggle-switch__slider"></span>
+                        </div>
+
+                        <span class="toggle-switch__txt toggle-switch__txt--right">
+                            Pay Annually
+                        </span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="grid grid--spaced grid--h-center grid--spaced-lt3-2 grid--spaced-m1-1">
+                {% for plan in plans %}
+                    {% set button = cms_button(plan.btn) %}
+
+                    <div class="grid__col grid__col--4 grid__col--flex">
+                        <div class="plan {{ plan.enhanced ? 'plan--enhanced' : '' }}">
+                            {% if plan.img or plan.title %}
+                                <div class="plan__top">
+                                    {% if plan.img %}
+                                        {{ cms_image(plan.img, 'Pricing Plan Icon') }}
+                                    {% endif %}
+
+                                    {% if plan.title %}
+                                        <h3 class="plan__title">
+                                            {{ plan.title | raw }}
+                                        </h3>
+                                    {% endif %}
+                                </div>
+                            {% endif %}
+
+                            {% if plan.amount_monthly != '' %}
+                                <div class="plan__pricing">
+                                    <div class="plan__amount">
+                                        <span class="plan__amount-money plan__amount-money--monthly">
+                                            £{{ plan.amount_monthly }}
+                                        </span>
+                                        <span class="plan__amount-money plan__amount-money--yearly">
+                                            £{{ plan.amount_yearly }}
+                                        </span>
+
+                                        {% if plan.amount_monthly > 0 %}
+                                            <span class="plan__amount-append">
+                                                +VAT
+                                            </span>
+                                        {% endif %}
+                                    </div>
+
+                                    {% if plan.period %}
+                                        <p class="plan__period">
+                                            <span data-pricing-period="monthly">
+                                                {{ plan.period | raw }}
+                                            </span>
+                                            {% if plan.period_yearly %}
+                                                <span class="hidden" data-pricing-period="yearly">
+                                                    {{ plan.period_yearly | raw }}
+                                                </span>
+                                            {% endif %}
+                                        </p>
+                                    {% endif %}
+                                </div>
+                            {% endif %}
+
+                            {% if plan.features %}
+                                <ul class="plan__features">
+                                    {% for feature in plan.features %}
+                                        {% if feature.label %}
+                                            <li class="plan__feature">
+                                                {% if feature.included %}
+                                                    {{ svg('included', 'icons') }}
+                                                {% else %}
+                                                    {{ svg('excluded', 'icons') }}
+                                                {% endif %}
+
+                                                {{ feature.label | raw }}
+                                            </li>
+                                        {% endif %}
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
+
+                            {% if button or plan.txt %}
+                                <div class="plan__bottom">
+                                    {{ button | raw }}
+
+                                    {% if plan.txt %}
+                                        <p class="plan__txt">
+                                            {{ plan.txt | raw }}
+                                        </p>
+                                    {% endif %}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

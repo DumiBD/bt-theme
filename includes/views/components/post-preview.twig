@@ -1,0 +1,29 @@
+<article class="post-preview">
+    <figure class="post-preview__media">
+        <a href="{{ url | e }}">
+            {{ image_html | raw }}
+        </a>
+    </figure>
+
+    <div class="post-preview__content">
+        <p class="post-preview__term">
+            {{ term_html | raw }}
+        </p>
+
+        <h3 class="post-preview__title">
+            <a href="{{ url | e }}">
+                {{ title | raw }}
+            </a>
+        </h3>
+
+        <p class="post-preview__subtitle">
+            {{ date }}
+        </p>
+
+        {% if excerpt %}
+            <p class="post-preview__desc">
+                {{ excerpt }}
+            </p>
+        {% endif %}
+    </div>
+</article>

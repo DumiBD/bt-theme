@@ -1,0 +1,60 @@
+{% set form_title = ACF.settingsField('footer_form_title') %}
+{% set form = ACF.settingsField('footer_gravity_form') %}
+
+<footer class="site-footer">
+    <div class="site-footer__inner site-footer__inner--primary">
+        {% if form_title or form_url %}
+            <div class="site-footer__section site-footer__section--primary">
+                {% if form_title %}
+                    <h2 class="site-footer__heading">
+                        {{ form_title | raw }}
+                    </h2>
+                {% endif %}
+
+                {% if form %}
+                    {{ gravity_form(form.id) }}
+                {% endif %}
+            </div>
+        {% endif %}
+
+        {% if locations %}
+            {% for location in locations %}
+                <div class="site-footer__section site-footer__section--secondary">
+                    {% if location.title %}
+                        <h2 class="site-footer__heading">
+                            <span>
+                                {{ location.title | raw }}
+                            </span>
+                        </h2>
+                    {% endif %}
+
+                    {% if location.phone %}
+                        <a class="btn btn--light btn--ghost" href="tel:{{ location.phone | e }}">
+                            <span>
+                                {{ location.phone | raw }}
+                            </span>
+                        </a>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+
+    <div class="site-footer__inner site-footer__inner--secondary">
+        <div class="site-footer__section site-footer__section--half">
+            <a class="site-footer__logo">
+                {{ svg('logo-light') }}
+            </a>
+
+            <p class="site-footer__txt">
+                {{ apply_filters('bto/text_tokens', ACF.settingsField('site_copyright')) }}
+            </p>
+        </div>
+
+        <div class="site-footer__section site-footer__section--half site-footer__section--align-right">
+            {{ socialLinks | raw }}
+
+            {{ menu | raw }}
+        </div>
+    </div>
+</footer>

@@ -1,0 +1,33 @@
+{% extends "layouts/section.twig" %}
+
+{% block content %}
+    <div data-animate="fade">
+        {% include "components/intro.twig" with {
+        intro: intro,
+    } %}
+
+        {% if img_1 or img_2 or txt %}
+            <div class="screenshots">
+                <figure class="screenshots__media screenshots__media--left" data-animate="fade">
+                    {% if img_1 %}
+                        {{ cms_image(img_1, 'Screenshot') }}
+                    {% endif %}
+                </figure>
+
+                <div class="screenshots__txt">
+                    {% if txt %}
+                        <div class="txt-styles">
+                            {{ txt | wysiwyg }}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <figure class="screenshots__media screenshots__media--right" data-animate="fade">
+                    {% if img_2 %}
+                        {{ cms_image(img_2, 'Screenshot') }}
+                    {% endif %}
+                </figure>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

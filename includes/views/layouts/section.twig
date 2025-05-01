@@ -1,0 +1,37 @@
+{% set _content = block('content') %}
+
+{% if _content is not empty and not disable_section %}
+    {% if style == 'option_1' %}
+        {% set html_classes = html_classes ~ ' core-section--bg-light' %}
+    {% elseif style == 'option_2' %}
+        {% set html_classes = html_classes ~ ' core-section--bg-grey' %}
+    {% elseif style == 'option_3' %}
+        {% set html_classes = html_classes ~ ' core-section--bg-dark' %}
+    {% elseif style == 'option_4' %}
+        {% set html_classes = html_classes ~ ' core-section--bg-blue' %}
+    {% else %}
+        {% set html_classes = html_classes ~ ' core-section--bg-light' %}
+    {% endif %}
+
+    {% if shapes %}
+        {% if shapes_position == 'option_1' %}
+            {% set html_classes = html_classes ~ ' core-section--shapes-top-left' %}
+        {% elseif shapes_position == 'option_2' %}
+            {% set html_classes = html_classes ~ ' core-section--shapes-top-right' %}
+        {% elseif shapes_position == 'option_3' %}
+            {% set html_classes = html_classes ~ ' core-section--shapes-bottom-left' %}
+        {% elseif shapes_position == 'option_4' %}
+            {% set html_classes = html_classes ~ ' core-section--shapes-bottom-right' %}
+        {% endif %}
+    {% endif %}
+
+    {% if style == 'option_3' and bg_img %}
+        {% if bg_img == 'option_2' %}
+            {% set html_classes = html_classes ~ ' core-section--bg-img-night-sky' %}
+        {% endif %}
+    {% endif %}
+
+    <section id="{{ html_id | e }}" class="{{ html_classes | e }}" style="{{ html_styles | e }}">
+        {{ _content | raw }}
+    </section>
+{% endif %}

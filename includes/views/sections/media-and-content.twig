@@ -1,0 +1,33 @@
+{% extends "layouts/section.twig" %}
+
+{% block content %}
+    <div class="media-block">
+        <div class="media-block__media" data-animate="fade">
+            {% if img %}
+                {{ cms_image(img, 'Media + Content') }}
+            {% elseif(video) %}
+                <div class="video-overlay">
+                    <div data-load-video="video" data-video-code="{{ video.embed_code | json_encode }}">
+                        {{ cms_image(video.img, 'Media + Content') }}
+                    </div>
+
+                    {% if video.embed_code %}
+                        <a class="video-overlay__action" href="#" data-load-video-target="video">
+                            {{ svg('play', 'icons') }}
+                        </a>
+                    {% endif %}
+                </div>
+            {% endif %}
+        </div>
+
+        <div class="media-block__content">
+            <div class="media-block__content-inner">
+                {% if txt %}
+                    <div class="txt-styles">
+                        {{ txt | wysiwyg }}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,28 @@
+{
+    "name": "fhoke/slate-helpers",
+    "authors": [
+        {
+            "name": "Seb Kay",
+            "email": "seb@fhoke.com",
+            "homepage": "https://www.fhoke.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Fhoke\\Slate\\": "src/"
+        },
+        "files": [
+            "inc/stubs.php",
+            "inc/filters.php"
+        ]
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "git@github.com:Fhoke/infra.git"
+        }
+    ],
+    "require-dev": {
+        "fhoke/infra": "^1.1"
+    }
+}

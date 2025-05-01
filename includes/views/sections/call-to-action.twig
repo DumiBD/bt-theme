@@ -1,0 +1,17 @@
+{% extends "layouts/section.twig" %}
+
+{% block content %}
+    {% if txt %}
+        <div class="cta">
+            <div data-animate="fade">
+                <div class="cta__inner">
+                    <div class="cta__content">
+                        <div class="txt-styles">
+                            {{ txt | wysiwyg }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

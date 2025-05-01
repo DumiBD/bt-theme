@@ -1,0 +1,69 @@
+{% extends "layouts/section.twig" %}
+
+{% block content %}
+    <div data-animate="fade">
+        {% include "components/intro.twig" with {
+        intro: intro,
+    } %}
+
+        {% if locations %}
+            <div class="section section--large">
+                {% for location in locations %}
+                    <div class="grid grid--spaced grid--v-center grid--spaced-m2-1 {{ not loop.last ? 'mb-medium' : '' }}">
+                        <div class="grid__col grid__col--6" data-animate="fade">
+                            {% if location.map %}
+                                {{ Utilities.googleMap([location.map]) | raw }}
+                            {% endif %}
+                        </div>
+
+                        <div class="grid__col grid__col--1"></div>
+
+                        <div class="grid__col grid__col--5">
+                            {% if location.title %}
+                                <h3 class="mb-mini">
+                                    {{ location.title | raw }}
+                                </h3>
+                            {% endif %}
+
+                            <div class="btn-group btn-group--tb2-1 mb-tiny">
+                                {% if location.phone %}
+                                    <a class="btn" href="tel:{{ location.phone | e }}" target="_blank">
+                                        <span>
+                                            {{ location.phone | raw }}
+                                        </span>
+                                    </a>
+                                {% endif %}
+
+                                {% if location.email %}
+                                    <a class="fancy-link" href="mailto:{{ location.email | e }}" target="_blank">
+                                        <span class="fancy-icon">
+                                            {{ svg('arrow-right', 'icons') }}
+                                        </span>
+
+                                        <span class="fancy-link__txt">
+                                            {{ __('Email Us', 'bluetown') }}
+                                        </span>
+                                    </a>
+                                {% endif %}
+                            </div>
+
+                            {% if location.address %}
+                                <div class="txt-styles">
+                                    <p>
+                                        {% if location.address_url %}
+                                            <a href="{{ location.address_url | e }}" target="_blank">
+                                                {{ location.address | raw }}
+                                            </a>
+                                        {% else %}
+                                            {{ location.address | raw }}
+                                        {% endif %}
+                                    </p>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

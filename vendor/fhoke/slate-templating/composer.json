@@ -1,0 +1,36 @@
+{
+    "name": "fhoke/slate-templating",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Seb Kay",
+            "email": "seb@fhoke.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Fhoke\\Slate\\Templating\\": "src/"
+        },
+        "files": [
+            "inc/stubs.php",
+            "inc/filters.php"
+        ]
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "git@github.com:Fhoke/infra.git"
+        },
+        {
+            "type": "vcs",
+            "url": "git@github.com:Fhoke/slate-helpers.git"
+        }
+    ],
+    "require": {
+        "twig/twig": "^3.3",
+        "fhoke/slate-helpers": "^6.0"
+    },
+    "require-dev": {
+        "fhoke/infra": "^1.0"
+    }
+}

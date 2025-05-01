@@ -1,0 +1,30 @@
+{% extends "layouts/section.twig" %}
+
+{% block content %}
+    {% include "components/intro.twig" with {
+        intro: intro,
+    } %}
+
+    {% if logos %}
+        <div class="section section--large">
+            <div class="logos" data-animate="logos">
+                {% for logo in logos %}
+                    {% set image = cms_image(logo.img ?: [], 'Logo') %}
+
+                    {% if image %}
+                        {% set image_with_link = Link(logo.link).setText(image) %}
+                        <div class="logos__item">
+                            {% if image_with_link.isSetup() %}
+                                {{ image_with_link.render() | raw }}
+                            {% else %}
+                                <span>
+                                    {{ image | raw }}
+                                </span>
+                            {% endif %}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

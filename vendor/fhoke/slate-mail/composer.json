@@ -1,0 +1,22 @@
+{
+    "name": "fhoke/slate-mail",
+    "description": "Simple mailer class.",
+    "authors": [
+        {
+            "name": "Seb Kay",
+            "email": "seb@fhoke.com",
+            "homepage": "https://www.fhoke.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "SlateMail\\": "src/"
+        }
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "^3.5"
+    },
+    "scripts": {
+        "build:dev": "git clean -xffd && composer install"
+    }
+}

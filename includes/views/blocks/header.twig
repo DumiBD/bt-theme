@@ -1,0 +1,31 @@
+<header class="site-header">
+    {{ do_action('slate_start_header') }}
+
+    <div class="site-header__inner">
+        <div class="site-header__section site-header__section--logo">
+            <a class="site-header__logo" href="{{ urls.home | e }}">
+                {{ svg('logo') }}
+            </a>
+        </div>
+
+        {% if menu %}
+            <div class="site-header__section site-header__section--menu">
+                {% if hide_menu %}
+                    {% if hide_menu_button.isSetup %}
+                        {{ hide_menu_button.render() }}
+                    {% endif %}
+                {% else %}
+                    {{ menu | raw }}
+                {% endif %}
+            </div>
+        {% endif %}
+
+        {% if menu_2 %}
+            <div class="site-header__section site-header__section--actions">
+                {{ menu_2 | raw }}
+            </div>
+        {% endif %}
+    </div>
+
+    {{ do_action('slate_end_header') }}
+</header>

@@ -1,0 +1,48 @@
+{% extends "layouts/section.twig" %}
+
+{% block content %}
+    <div data-animate="fade">
+        {% include "components/intro.twig" with {
+        intro: intro,
+    } %}
+
+        {% if team %}
+            <div class="overflow-hidden">
+                <div class="section section--large">
+                    <div class="flickity flickity--user-cards" data-slider data-settings='{"cellAlign": "left", "counter" : false, "contain": true}'>
+                        {% for team_member_id in team %}
+                            {% set TeamMember = TeamMember(team_member_id).withAll() %}
+                            <div class="flickity__item" data-animate="fade">
+                                <div class="user-card">
+                                    {% if TeamMember.headshotHtml %}
+                                        <figure class="user-card__media">
+                                            {{ TeamMember.headshotHtml | raw }}
+                                        </figure>
+                                    {% endif %}
+
+                                    {% if TeamMember.title() %}
+                                        <h3 class="user-card__title">
+                                            {{ TeamMember.title() | raw }}
+                                        </h3>
+                                    {% endif %}
+
+                                    {% if TeamMember.jobTitle %}
+                                        <p class="user-card__subtitle">
+                                            {{ TeamMember.jobTitle | raw }}
+                                        </p>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+
+                    {% if btn %}
+                        <div class="mt-small txt-center">
+                            {{ cms_button(btn) }}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

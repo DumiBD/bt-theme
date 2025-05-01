@@ -1,0 +1,24 @@
+{% extends "layouts/section.twig" %}
+
+{% block content %}
+    {% include "components/intro.twig" with {
+        intro: intro,
+    } %}
+
+    {% if gravity_form %}
+        {% if width == 'option_2' %}
+            {% set section_class = 'section--large' %}
+        {% else %}
+            {% set section_class = 'section--small' %}
+        {% endif %}
+
+        <div class="section {{ section_class | e }}">
+            {{ gravity_form(
+                gravity_form.id,
+                contains(options, 'show_title'),
+                contains(options, 'show_desc'),
+                contains(options, 'use_ajax')
+            ) }}
+        </div>
+    {% endif %}
+{% endblock %}

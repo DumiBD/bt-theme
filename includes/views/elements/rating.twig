@@ -1,0 +1,23 @@
+{% set icon_outline = svg('star-outline', 'icons') %}
+{% set icon_filled = svg('star', 'icons') %}
+{% set icon_filled_half = svg('star-half', 'icons') %}
+
+{% if rating %}
+    <ul class="rating">
+        {% for i in 1..5 %}
+            {% if rating >= i %}
+                <li class="rating__item">
+                    {{ icon_filled | raw }}
+                </li>
+            {% elseif rating >= i - 0.5 %}
+                <li class="rating__item">
+                    {{ icon_filled_half | raw }}
+                </li>
+            {% else %}
+                <li class="rating__item">
+                    {{ icon_outline | raw }}
+                </li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+{% endif %}

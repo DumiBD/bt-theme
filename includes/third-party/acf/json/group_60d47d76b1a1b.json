@@ -1,0 +1,81 @@
+{
+    "key": "group_60d47d76b1a1b",
+    "title": "[CLONE] Tracking Codes",
+    "fields": [
+        {
+            "key": "field_59c3b03f285f9",
+            "label": "Head",
+            "name": "code_head",
+            "type": "textarea",
+            "instructions": "Paste any tracking code you'd like to add before the closing &#x3C;\/head&#x3E; tag.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "maxlength": "",
+            "rows": 4,
+            "new_lines": ""
+        },
+        {
+            "key": "field_60d47eb9d108b",
+            "label": "Body",
+            "name": "code_body",
+            "type": "textarea",
+            "instructions": "Paste any tracking code you'd like to add after the opening &#x3C;body&#x3E; tag.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "maxlength": "",
+            "rows": 4,
+            "new_lines": ""
+        },
+        {
+            "key": "field_60d47c3adfc17",
+            "label": "Footer",
+            "name": "code_footer",
+            "type": "textarea",
+            "instructions": "Paste any tracking code you'd like to add before the closing &#x3C;\/body&#x3E; tag.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "maxlength": "",
+            "rows": 4,
+            "new_lines": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "post"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": false,
+    "description": "",
+    "modified": 1626705148
+}
